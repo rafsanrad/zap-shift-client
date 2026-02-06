@@ -21,7 +21,7 @@ const Coverage = () => {
       // console.log(coOrdinate)
 
       //go to the location
-      mapRef.current.flyTo(coOrdinate, 14);
+      mapRef.current.flyTo(coOrdinate, 14); //14 is zoomlebel
     }
   };
   return (
