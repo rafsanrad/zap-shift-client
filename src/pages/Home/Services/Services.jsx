@@ -55,11 +55,11 @@ const services = [
 const Services = () => {
   return (
     <section className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-6xl bg-secondary mx-auto p-10 rounded-3xl">
         {/* Header */}
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
-          <p className="text-gray-500 max-w-2xl text-sm mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Our Services</h2>
+          <p className="text-white/80 max-w-2xl text-sm mx-auto">
             Enjoy fast, reliable parcel delivery with real-time tracking and
             zero hassle. From personal packages to business shipments — we
             deliver on time, every time.
@@ -74,7 +74,7 @@ const Services = () => {
               className="bg-gray-50 rounded-xl p-8 text-center shadow hover:shadow-lg transition hover:bg-primary hover:-translate-y-2"
             >
               <div className="flex justify-center mb-4">{service.icon}</div>
-              <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
+              <h3 className="text-xl font-semibold mb-3 text-secondary">{service.title}</h3>
               <p className="text-gray-500">{service.description}</p>
             </div>
           ))}
