@@ -2,7 +2,7 @@ import { Hand } from "lucide-react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
@@ -12,12 +12,16 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const { signInUser } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  //   console.log("in the login page",location)
 
   const handleLogin = (data) => {
     console.log("form data", data);
     signInUser(data.email, data.password)
       .then((result) => {
         console.log(result.user);
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         console.log(error);
@@ -26,8 +30,8 @@ const Login = () => {
 
   return (
     <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
-        <h3 className="text-3xl text-center">Welcome Back</h3>
-        <p className="text-center">Login With ZapShift</p>
+      <h3 className="text-3xl text-center">Welcome Back</h3>
+      <p className="text-center">Login With ZapShift</p>
       <form className="card-body" onSubmit={handleSubmit(handleLogin)}>
         <fieldset className="fieldset">
           {/* email field  */}
@@ -73,7 +77,16 @@ const Login = () => {
           </div>
           <button className="btn btn-neutral mt-4">Login</button>
         </fieldset>
-        <p>New to ZapShift ? Please go to <Link className="text-blue-400 underline" to="/register">Reister</Link></p>
+        <p>
+          New to ZapShift ? Please go to{" "}
+          <Link
+            state={location.state}
+            className="text-blue-400 underline"
+            to="/register"
+          >
+            Reister
+          </Link>
+        </p>
       </form>
       <SocialLogin></SocialLogin>
     </div>
