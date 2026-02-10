@@ -52,7 +52,7 @@ const Register = () => {
       });
   };
   return (
-    <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
+    <div className="card bg-base-100 w-full mx-auto max-w-sm shrink-0 mt-5 shadow-2xl">
       <h3 className="text-3xl text-center">Welcome to ZapShift</h3>
       <p className="text-center">Register With ZapShift</p>
       <form className="card-body" onSubmit={handleSubmit(handleRegistration)}>
