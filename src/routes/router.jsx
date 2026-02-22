@@ -17,7 +17,8 @@ import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
 import PaymentCancelled from "../pages/Dashboard/Payment/PaymentCancelled";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import ApproveRiders from "../pages/Dashboard/ApproveRiders/ApproveRiders";
-
+import UsersManagement from "../pages/Dashboard/UsersManagement/UsersManagement";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -33,18 +34,22 @@ export const router = createBrowserRouter([
         Component: AboutUs,
       },
       {
-        path:'rider',
-        element:<PrivateRoute>
-          <Rider></Rider>
-        </PrivateRoute>,
-        loader: () => fetch("/serviceCenters.json").then((res) => res.json())
+        path: "rider",
+        element: (
+          <PrivateRoute>
+            <Rider></Rider>
+          </PrivateRoute>
+        ),
+        loader: () => fetch("/serviceCenters.json").then((res) => res.json()),
       },
       {
-        path:'send-parcel',
-        element:<PrivateRoute>
-          <SendParcel></SendParcel>
-        </PrivateRoute>,
-        loader: () => fetch("/serviceCenters.json").then((res) => res.json())
+        path: "send-parcel",
+        element: (
+          <PrivateRoute>
+            <SendParcel></SendParcel>
+          </PrivateRoute>
+        ),
+        loader: () => fetch("/serviceCenters.json").then((res) => res.json()),
       },
       {
         path: "coverage",
@@ -54,53 +59,67 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path:'/',
-    Component:AuthLayout,
-    children:[
+    path: "/",
+    Component: AuthLayout,
+    children: [
       {
-        path:'login',
-        Component:Login
+        path: "login",
+        Component: Login,
       },
       {
-        path:'register',
-        Component:Register
-      }
-    ]
+        path: "register",
+        Component: Register,
+      },
+    ],
   },
   {
     path: "*",
     Component: ErrorPage,
   },
   {
-    path:'dashboard',
-    element:<PrivateRoute>
-      <DashboardLayout></DashboardLayout>
-    </PrivateRoute>,
-    children:[
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    children: [
       {
-        path:'my-parcels',
-        Component:MyParcels
+        path: "my-parcels",
+        Component: MyParcels,
       },
       {
-        path:'payment/:parcelId',
-        Component:Payment
+        path: "payment/:parcelId",
+        Component: Payment,
       },
       {
-        path:'payment-history',
-        Component: PaymentHistory
+        path: "payment-history",
+        Component: PaymentHistory,
       },
       {
-        path:'payment-success',
-        Component: PaymentSuccess 
+        path: "payment-success",
+        Component: PaymentSuccess,
       },
       {
-        path:'payment-cancelled',
-        Component: PaymentCancelled
+        path: "payment-cancelled",
+        Component: PaymentCancelled,
       },
       {
-        path:'approve-riders',
-        Component: ApproveRiders
-      }
-    ]
-  }
+        path: "approve-riders",
+        element: (
+          <AdminRoute>
+            <ApproveRiders></ApproveRiders>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "users-management",
+        element: (
+          <AdminRoute>
+            <UsersManagement></UsersManagement>
+          </AdminRoute>
+        ),
+      },
+    ],
+  },
 ]);
