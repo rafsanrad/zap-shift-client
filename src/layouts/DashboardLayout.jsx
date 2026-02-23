@@ -1,6 +1,7 @@
 import React from "react";
 import { TbTruckDelivery } from "react-icons/tb";
 import { FaMotorcycle, FaRegCreditCard, FaUsers } from "react-icons/fa";
+import { GiFullMotorcycleHelmet } from "react-icons/gi";
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../hooks/useRole";
 
@@ -107,6 +108,19 @@ const DashboardLayout = () => {
                     <FaMotorcycle />
                     <span className="is-drawer-close:hidden">
                       Approve Riders
+                    </span>
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Assign Riders"
+                    to="/dashboard/assign-riders"
+                  >
+                    <GiFullMotorcycleHelmet />
+                    <span className="is-drawer-close:hidden">
+                      Assign Riders
                     </span>
                   </NavLink>
                 </li>
