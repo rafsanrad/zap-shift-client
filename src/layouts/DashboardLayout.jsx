@@ -1,9 +1,11 @@
 import React from "react";
 import { TbTruckDelivery } from "react-icons/tb";
 import { FaMotorcycle, FaRegCreditCard, FaTasks, FaUsers } from "react-icons/fa";
+import { SiGoogletasks } from "react-icons/si";
 import { GiFullMotorcycleHelmet } from "react-icons/gi";
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../hooks/useRole";
+import logoImg from '../assets/logo.png'
 
 const DashboardLayout = () => {
   const { role } = useRole();
@@ -51,8 +53,11 @@ const DashboardLayout = () => {
           <ul className="menu w-full grow">
             {/* List item */}
             <li>
+              <Link to="/"><img src={logoImg} alt="" /></Link>
+            </li>
+            <li>
               <Link
-                to="/"
+                to="/dashboard"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Homepage"
               >
@@ -109,6 +114,19 @@ const DashboardLayout = () => {
                     <FaTasks/>
                     <span className="is-drawer-close:hidden">
                       Assigned Deliveries
+                    </span>
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Completed Deliveries"
+                    to="/dashboard/completed-deliveries"
+                  >
+                    <SiGoogletasks />
+                    <span className="is-drawer-close:hidden">
+                      Completed Deliveries
                     </span>
                   </NavLink>
                 </li>

@@ -47,16 +47,20 @@ const MyParcels = () => {
     });
   };
 
-  const handlePayment=async(parcel)=>{
-    const paymentInfo={
-      cost:parcel.cost,
-      parcelId:parcel._id,
-      senderEmail:parcel.senderEmail,
-      parcelName:parcel.parcelName
-    }
-    const res=await axiosSecure.post('/payment-checkout-session',paymentInfo)
+  const handlePayment = async (parcel) => {
+    const paymentInfo = {
+      cost: parcel.cost,
+      parcelId: parcel._id,
+      senderEmail: parcel.senderEmail,
+      parcelName: parcel.parcelName,
+      trackingId: parcel.trackingId,
+    };
+    const res = await axiosSecure.post(
+      "/payment-checkout-session",
+      paymentInfo,
+    );
     window.location.assign(res.data.url);
-  }
+  };
 
   return (
     <div>
@@ -82,15 +86,22 @@ const MyParcels = () => {
                 <td>{parcel.parcelName}</td>
                 <td>$ {parcel.cost}</td>
                 <td>
-                  {parcel.paymentStatus === 'paid' ? (
+                  {parcel.paymentStatus === "paid" ? (
                     <span className="text-green-400">Paid</span>
                   ) : (
-                    <button onClick={()=> handlePayment(parcel)} className="btn btn-primary text-black btn-sm">
+                    <button
+                      onClick={() => handlePayment(parcel)}
+                      className="btn btn-primary text-black btn-sm"
+                    >
                       Pay
                     </button>
                   )}
                 </td>
-                <td>{parcel.trackingId}</td>
+                <td>
+                  <Link to={`/parcel-track/${parcel.trackingId}`}>
+                    {parcel.trackingId}
+                  </Link>
+                </td>
                 <td>{parcel.deliveryStatus}</td>
                 <td>
                   <button className="btn btn-square hover:bg-primary">
